@@ -13,12 +13,13 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="materializecss/js/materialize.min.js"></script>
+<script type="text/javascript" src="functions.js"></script>
 
 <!-- Dropdown Structure -->
 <ul id="Account" class="dropdown-content">
-    <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_settings">Settings</a></li>
-    <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_notifications">Notifications</a></li>
-    <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_logOut">Log Out</a></li>
+    <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_settings">Settings</a></li>
+    <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_notifications">Notifications</a></li>
+    <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_logOut">Log Out</a></li>
 
 </ul>
 <div class="navbar-fixed">
@@ -27,18 +28,18 @@
             <a href="index.html" class="brand-logo center">DebatingPortal</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_about">About</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_contactUs">Contact Us</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_policy">Policy</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_about">About</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_contactUs">Contact Us</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_policy">Policy</a></li>
                 <li><a class="dropdown-button" href="#!" data-activates="Account">Account<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_about">About</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_contactUs">Contact Us</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_policy">Policy</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_settings">Settings</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_notifications">Notifications</a></li>
-                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="page_logOut">Log Out</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_about">About</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_contactUs">Contact Us</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_policy">Policy</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_settings">Settings</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_notifications">Notifications</a></li>
+                <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_logOut">Log Out</a></li>
             </ul>
         </div>
     </nav>
