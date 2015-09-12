@@ -1,4 +1,14 @@
 
+Parse.initialize("gaNH3iqPa51vU7S4UeJGU8BqPwEZWHxYiFvPYRIJ", "NlQk7ypYuRJLsf6EcOOvPJTUZLUbWSHhtYHOoUKD");
+pageChanged(document.getElementById("page_login"));
+document.getElementById("page_login").style.display="initial";
+
+
+
+
+
+
+
 function hideAll()
 {
 	document.getElementById("page_about").style.display="none";
