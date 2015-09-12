@@ -25,7 +25,7 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper light-blue">
-            <a href="index.html" class="brand-logo center">DebatingPortal</a>
+            <a class="brand-logo center" style="cursor: pointer;" onclick = "pageChanged(this)" id="link_login">DebatingPortal</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a style="cursor: pointer;" onclick = "pageChanged(this)" id="link_about">About</a></li>
@@ -70,7 +70,7 @@
                             <label for="signIn_password">Password</label>
                         </div>
                     </form>
-                    <div class="row" align="right">
+                    <div class="row right-align">
                         <button class="btn waves-effect waves-light light-blue" \
                           onclick = "signIn()" type="submit" name="action">I'm back!
                             <i class="material-icons">send</i>
@@ -111,7 +111,7 @@
                     </div>
                     </form>
 
-                    <div class="row" align="right">
+                    <div class="row right-align">
                         <button class="btn waves-effect waves-light light-blue" \
                           onclick = "signUp()" type="submit" name="action">Sign me up!
                             <i class="material-icons">send</i>
@@ -128,30 +128,58 @@
 
 <div id="page_home" class="row">
 
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3">
+                    <a href="#tab_completed">
+                        <span class="hide-on-small-only">Completed Debates</span>
+                        <span class="hide-on-med-and-up">Completed</span>
+                    </a>
+                </li>
+                <li class="tab col s3">
+                    <a class="active" href="#tab_current">
+                        <span class="hide-on-small-only">Current Debates</span>
+                        <span class="hide-on-med-and-up">Current</span>
+                    </a>
+                </li>
+                <li class="tab col s3">
+                    <a href="#tab_mine">
+                        <span class="hide-on-small-only">My Debates</span>
+                        <span class="hide-on-med-and-up">Mine</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="tab_completed" class="col s12">Test 1</div>
+        <div id="tab_current" class="col s12">Test 2</div>
+        <div id="tab_mine" class="col s12">Test 4</div>
+    </div>
+
 </div>
 
 <div id="page_debate" class="row">
-
+    yo
 </div>
 
 <div id="page_about" class="row">
-
+    yo
 </div>
 
 <div id="page_contactUs" class="row">
-
+    yolo
 </div>
 
 <div id="page_policy" class="row">
-
+    yo
 </div>
 
 <div id="page_settings" class="row">
-
+    yo
 </div>
 
 <div id="page_notifications" class="row">
-
+    yo
 </div>
 
 
