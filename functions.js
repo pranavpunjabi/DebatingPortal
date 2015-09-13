@@ -1,7 +1,13 @@
 
+// Initializing parse
 Parse.initialize("gaNH3iqPa51vU7S4UeJGU8BqPwEZWHxYiFvPYRIJ", "NlQk7ypYuRJLsf6EcOOvPJTUZLUbWSHhtYHOoUKD");
 pageChanged(document.getElementById("page_login"));
 document.getElementById("page_login").style.display="initial";
+
+
+//var User = Parse.Object.extend("User");
+var Debate = Parse.Object.extend("Debate");
+var Post = Parse.Object.extend("Post")
 
 
 
@@ -49,9 +55,16 @@ function pageChanged(elem) {
     }
 
 
+}
 
 
-
-
-
+function signUp() {
+	var User = Parse.Object.extend("User");
+	var user = new User();
+	user.set("email", document.getElementById("signUp_email").value);
+	user.set("password", document.getElementById("signUp_password").value);	
+	user.save();
+	console.log(user);
+	
+	
 }
