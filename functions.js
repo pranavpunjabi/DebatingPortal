@@ -12,7 +12,8 @@ $(function()
 		document.getElementById("page_login").style.display="initial";
 	}
 
-	//showDebate(debate);
+	// hideAll();document.getElementById("page_debate").style.display="initial";
+	Materialize.toast("yo", 4000);
 });
 
 function showDebateParent(elem)
@@ -25,7 +26,7 @@ function showDebateParent(elem)
 		{
 			var debate = results[0].toJSON();
 			showDebate(debate);
-		}, function(error){window.alert(error.message);});
+		}, function(error){Materialize.toast(error.message,4000);});
 }
 
 function showDebate(debate)
@@ -99,7 +100,7 @@ function showDebate(debate)
 			},
 			function(error)
 			{
-				window.alert(error.message);
+				Materialize.toast(error.message,4000);
 			}
 		);
 
@@ -206,7 +207,7 @@ function pageChanged(elem)
 	}
 	else if(elem.id == "link_logOut") {
 		Parse.User.logOut();
-		window.alert("you have been successfully logged out");
+		Materialize.toast("you have been successfully logged out", 4000);
 		document.getElementById("page_login").style.display="initial";
 	}
 }
@@ -222,27 +223,27 @@ function signUp()
 	var lastName = document.getElementById("signUp_lastName").value;
 	if(emailId == "")
 	{
-		window.alert("Please enter email");
+		Materialize.toast("Please enter email", 4000);
 		return;
 	}
 	if(firstName == "")
 	{
-		window.alert("Please enter first name");
+		Materialize.toast("Please enter first name", 4000);
 		return;
 	}
 	if(lastName == "")
 	{
-		window.alert("Please enter last name");
+		Materialize.toast("Please enter last name", 4000);
 		return;
 	}
 	if(password == "")
 	{
-		window.alert("Please enter password");
+		Materialize.toast("Please enter password", 4000);
 		return;
 	}
 	if(password != repassword)
 	{
-		window.alert("Please enter same passwords");
+		Materialize.toast("Please enter same passwords", 4000);
 		document.getElementById("signUp_password").value = "";
 		document.getElementById("signUp_repassword").value = "";
 		return;
@@ -268,7 +269,7 @@ function signUp()
 	error: function(user, error)
 	{
 			// error creating account
-			window.alert(error.message);
+			Materialize.toast(error.message,4000);
 			document.getElementById("signUp_password").value = "";
 			document.getElementById("signUp_repassword").value = "";
 		}
@@ -287,7 +288,7 @@ function signIn()
 		updateDebateList();
 	}, function(error)
 	{
-		window.alert(error.message);
+		Materialize.toast(error.message,4000);
 	}
 
 	);
