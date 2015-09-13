@@ -9,7 +9,14 @@ $(function()
 	Parse.$ = jQuery;
 	Parse.initialize("gaNH3iqPa51vU7S4UeJGU8BqPwEZWHxYiFvPYRIJ", "NlQk7ypYuRJLsf6EcOOvPJTUZLUbWSHhtYHOoUKD");
 	hideAll();
-	document.getElementById("page_login").style.display="initial";
+	if(Parse.User.current())
+	{
+		document.getElementById("page_home").style.display="initial";
+	}
+	else
+	{
+		document.getElementById("page_login").style.display="initial";
+	}
 });
 
 
@@ -51,7 +58,9 @@ function pageChanged(elem)
     	document.getElementById("page_notifications").style.display="initial";
     }
     else if(elem.id == "link_logOut") {
-    	document.getElementById("page_home").style.display="initial";
+		Parse.User.logOut();
+		window.alert("you have been successfully logged out");
+    	document.getElementById("page_login").style.display="initial";
     }
 }
 
@@ -119,14 +128,19 @@ function signUp()
 	});
 }
 
-function signIn() {
+function signIn()
+{
 	var emailId = document.getElementById("signIn_email").value;
 	var password = document.getElementById("signIn_password").value;
-	Parse.User.logIn(emailId, password).then(function(user) {
+	Parse.User.logIn(emailId, password).then(function(user)
+	{
 		//User is logged in
-	}, function(error) {
+		hideAll();
+		document.getElementById("page_home").style.display="initial";
+	}, function(error)
+	{
 		window.alert(error.message);
 	}
 
-	});
+	);
 }
