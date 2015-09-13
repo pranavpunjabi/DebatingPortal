@@ -62,10 +62,26 @@ function signUp()
 	var emailId = document.getElementById("signUp_email").value;
 	var password = document.getElementById("signUp_password").value;
 	var repassword = document.getElementById("signUp_repassword").value;
+	var firstName = document.getElementById("signUp_firstName").value;
+	var lastName = document.getElementById("signUp_lastName").value;
+	if(emailId == "")
+	{
+		window.alert("Please enter email");
+		return;
+	}
+	if(firstName == "")
+	{
+		window.alert("Please enter first name");
+		return;
+	}
+	if(lastName == "")
+	{
+		window.alert("Please enter last name");
+		return;
+	}
 	if(password == "")
 	{
 		window.alert("Please enter password");
-		document.getElementById("signUp_password").value = "";
 		return;
 	}
 	if(password != repassword)
@@ -75,15 +91,32 @@ function signUp()
 		document.getElementById("signUp_repassword").value = "";
 		return;
 	}
-	var firstName = document.getElementById("signUp_firstName").value;
-	var lastName = document.getElementById("signUp_lastName").value;
 	var emptyList = [];
 	user.set("email", emailId);
 	user.set("password", password);
-	user.set("username",firstName + " " + lastName);
+	user.set("username", emailId); // user name is the email
+	user.set("firstName", firstName);
+	user.set("lastName", lastName);
 	user.set("debateList", emptyList);
-	user.save();
-	window.alert("Kindly verify your email and then sign in");
+	user.signUp(null,{
+		success: function(user)
+		{
+		// account was created
+			alert("Account successfully created. Please follow verification link mailed to you.");
+			document.getElementById("signUp_email").value = "";
+			document.getElementById("signUp_firstName").value = "";
+			document.getElementById("signUp_lastName").value = "";
+			document.getElementById("signUp_password").value = "";
+			document.getElementById("signUp_repassword").value = "";
+		},
+		error: function(user, error)
+		{
+			// error creating account
+			window.alert(error.message);
+			document.getElementById("signUp_password").value = "";
+			document.getElementById("signUp_repassword").value = "";
+		}
+	});
 }
 
 function signIn() {
