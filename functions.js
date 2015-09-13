@@ -1,15 +1,16 @@
 
-// Initializing parse
-Parse.initialize("gaNH3iqPa51vU7S4UeJGU8BqPwEZWHxYiFvPYRIJ", "NlQk7ypYuRJLsf6EcOOvPJTUZLUbWSHhtYHOoUKD");
-pageChanged(document.getElementById("page_login"));
-document.getElementById("page_login").style.display="initial";
-
-
 //var User = Parse.Object.extend("User");
-var Debate = Parse.Object.extend("Debate");
-var Post = Parse.Object.extend("Post")
+//var Debate = Parse.Object.extend("Debate");
+//var Post = Parse.Object.extend("Post")
 
 
+$(function()
+{
+	Parse.$ = jQuery;
+	Parse.initialize("gaNH3iqPa51vU7S4UeJGU8BqPwEZWHxYiFvPYRIJ", "NlQk7ypYuRJLsf6EcOOvPJTUZLUbWSHhtYHOoUKD");
+	hideAll();
+	document.getElementById("page_login").style.display="initial";
+});
 
 
 
@@ -28,10 +29,9 @@ function hideAll()
 }
 
 
-function pageChanged(elem) {
-
+function pageChanged(elem)
+{
 	hideAll();
-
     if(elem.id == "link_about") {
     	document.getElementById("page_about").style.display="initial";
     }
@@ -53,18 +53,35 @@ function pageChanged(elem) {
     else if(elem.id == "link_logOut") {
     	document.getElementById("page_home").style.display="initial";
     }
-
-
 }
 
 
-function signUp() {
-	var User = Parse.Object.extend("User");
-	var user = new User();
-	user.set("email", document.getElementById("signUp_email").value);
-	user.set("password", document.getElementById("signUp_password").value);	
+function signUp()
+{
+	var user = new Parse.User();
+	var emailId = document.getElementById("signUp_email").value;
+	var password = document.getElementById("signUp_password").value;
+	var repassword = document.getElementById("signUp_repassword").value;
+	if(password == "")
+	{
+		window.alert("Please enter password");
+		document.getElementById("signUp_password").value = "";
+		return;
+	}
+	if(password != repassword)
+	{
+		window.alert("Please enter same passwords");
+		document.getElementById("signUp_password").value = "";
+		document.getElementById("signUp_repassword").value = "";
+		return;
+	}
+	var firstName = document.getElementById("signUp_firstName").value;
+	var lastName = document.getElementById("signUp_lastName").value;
+	var emptyList = [];
+	user.set("email", emailId);
+	user.set("password", password);
+	user.set("username",firstName + " " + lastName);
+	user.set("debateList", emptyList);
 	user.save();
-	console.log(user);
-	
-	
+	window.alert("Kindly verify your email and then sign in");
 }
