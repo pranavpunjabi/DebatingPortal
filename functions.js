@@ -434,8 +434,17 @@ function addPost()
 function submitPost()
 {
 	$('#inputModal').closeModal();
-	var motion = document.getElementById("submitPost_motion").value ;
-	var type = document.getElementById("submitPost_type").value ;
+	
+	var motion=$("#submitPost_motion").is(":checked");
+	if(motion == true) motion = "A";
+	else motion = "F";
+
+
+	var type = $("#submitPost_type").is(":checked");
+	if(type == true) type = "R";
+	else type = "C";
+
+
 	var title = document.getElementById("submitPost_title").value ;
 	var description = document.getElementById("submitPost_description").value ;
 	console.log(motion + "," + type + "," + title + "," + description);
