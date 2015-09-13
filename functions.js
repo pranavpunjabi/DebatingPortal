@@ -323,7 +323,7 @@ query.find({
 
     // Successfully retrieved the object.
     for(var i = 0; i < list.length; i++) {
-    	$("<li><a href='#'>" + list[i].get("title") + "</a></li>").appendTo("#debateList_current");
+    	$("<li><a style=\"cursor:pointer;\" onClick =\"showDebate("+list[i].toJSON()[0]+")\" >" + list[i].get("title") + "</a></li>").appendTo("#debateList_current");
     }
 
 },
@@ -343,7 +343,7 @@ query.find({
 	success: function(list) {
     // Successfully retrieved the object.
     for(var i = 0; i < list.length; i++) {
-    	$("<li><a href='#'>" + list[i].get("title") + "</a></li>").appendTo("#debateList_completed");
+    	$("<li><a style=\"cursor:pointer;\" onClick =\"showDebate("+list[i].toJSON()[0]+")\">" + list[i].get("title") + "</a></li>").appendTo("#debateList_completed");
     }
 
 },
@@ -368,7 +368,7 @@ query.find(
 
     // Successfully retrieved the object.
     for(var i = 0; i < array.length; i++) {
-    	$("<li><a href='#'>" + array[i].get("title") + "</a></li>").appendTo("#debateList_mine");
+    	$("<li><a style=\"cursor:pointer;\" onClick =\"showDebate("+array[i].toJSON()[0]+")\">" + array[i].get("title") + "</a></li>").appendTo("#debateList_mine");
     }
 
 },
@@ -378,14 +378,6 @@ error: function(error)
 }
 
 });
-
-
-
-
-
-
-
-
 
 
 }
