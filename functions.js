@@ -85,3 +85,15 @@ function signUp()
 	user.save();
 	window.alert("Kindly verify your email and then sign in");
 }
+
+function signIn() {
+	var emailId = document.getElementById("signIn_email").value;
+	var password = document.getElementById("signIn_password").value;
+	Parse.User.logIn(emailId, password).then(function(user) {
+		//User is logged in
+	}, function(error) {
+		window.alert(error.message);
+	}
+
+	});
+}
