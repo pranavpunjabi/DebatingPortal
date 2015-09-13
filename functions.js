@@ -1,9 +1,3 @@
-
-
-
-//var Post = Parse.Object.extend("Post")
-
-
 $(function()
 {
 	Parse.$ = jQuery;
@@ -49,7 +43,7 @@ $(function()
 		"title": "This house is for the advantages of unhealthy food for a healthy living",
 		"updatedAt": "2015-09-13T03:56:05.169Z"
 	}
-	showDebate(debate);
+	//showDebate(debate);
 });
 
 
@@ -205,9 +199,9 @@ function hideAll()
 function pageChanged(elem)
 {
 	hideAll();
-    if(elem.id == "link_about") {
-    	document.getElementById("page_about").style.display="initial";
-    }
+	if(elem.id == "link_about") {
+		document.getElementById("page_about").style.display="initial";
+	}
 	else if(elem.id == "link_contactUs") {
 		document.getElementById("page_contactUs").style.display="initial";
 	}
@@ -219,19 +213,19 @@ function pageChanged(elem)
 			document.getElementById("page_login").style.display="initial";
 	}
 	else if(elem.id == "link_policy") {
-    	document.getElementById("page_policy").style.display="initial";
-    }
-    else if(elem.id == "link_settings") {
-    	document.getElementById("page_settings").style.display="initial";
-    }
-    else if(elem.id == "link_notifications") {
-    	document.getElementById("page_notifications").style.display="initial";
-    }
-    else if(elem.id == "link_logOut") {
+		document.getElementById("page_policy").style.display="initial";
+	}
+	else if(elem.id == "link_settings") {
+		document.getElementById("page_settings").style.display="initial";
+	}
+	else if(elem.id == "link_notifications") {
+		document.getElementById("page_notifications").style.display="initial";
+	}
+	else if(elem.id == "link_logOut") {
 		Parse.User.logOut();
 		window.alert("you have been successfully logged out");
-    	document.getElementById("page_login").style.display="initial";
-    }
+		document.getElementById("page_login").style.display="initial";
+	}
 }
 
 
@@ -281,15 +275,15 @@ function signUp()
 		success: function(user)
 		{
 		// account was created
-			alert("Account successfully created. Please follow verification link mailed to you.");
-			document.getElementById("signUp_email").value = "";
-			document.getElementById("signUp_firstName").value = "";
-			document.getElementById("signUp_lastName").value = "";
-			document.getElementById("signUp_password").value = "";
-			document.getElementById("signUp_repassword").value = "";
-		},
-		error: function(user, error)
-		{
+		alert("Account successfully created. Please follow verification link mailed to you.");
+		document.getElementById("signUp_email").value = "";
+		document.getElementById("signUp_firstName").value = "";
+		document.getElementById("signUp_lastName").value = "";
+		document.getElementById("signUp_password").value = "";
+		document.getElementById("signUp_repassword").value = "";
+	},
+	error: function(user, error)
+	{
 			// error creating account
 			window.alert(error.message);
 			document.getElementById("signUp_password").value = "";
@@ -307,10 +301,91 @@ function signIn()
 		//User is logged in
 		hideAll();
 		document.getElementById("page_home").style.display="initial";
+		updateDebateList();
 	}, function(error)
 	{
 		window.alert(error.message);
 	}
 
 	);
+}
+
+
+function updateDebateList() {
+
+var query = new Parse.Query("Debate");
+
+//updating current debates
+query.equalTo("active", true);
+query.find({
+	success: function(list) {
+
+
+    // Successfully retrieved the object.
+    for(var i = 0; i < list.length; i++) {
+    	$("<li><a href='#'>" + list[i].get("title") + "</a></li>").appendTo("#debateList_current");
+    }
+
+},
+error: function(error)
+{
+	alert("Error: " + error.code + " " + error.message);
+}
+
+});
+
+
+
+var query = new Parse.Query("Debate");
+//updating completed debates
+query.equalTo("active", false);
+query.find({
+	success: function(list) {
+    // Successfully retrieved the object.
+    for(var i = 0; i < list.length; i++) {
+    	$("<li><a href='#'>" + list[i].get("title") + "</a></li>").appendTo("#debateList_completed");
+    }
+
+},
+error: function(error)
+{
+	alert("Error: " + error.code + " " + error.message);
+}
+
+});
+
+
+
+
+var query = new Parse.Query("Debate");
+//updating my debates
+var myId = Parse.User.current().id;
+query.containedIn("memberIdList", [myId]);
+query.find(
+{
+	success: function(array) {
+
+
+    // Successfully retrieved the object.
+    for(var i = 0; i < array.length; i++) {
+    	$("<li><a href='#'>" + array[i].get("title") + "</a></li>").appendTo("#debateList_mine");
+    }
+
+},
+error: function(error)
+{
+	alert("Error: " + error.code + " " + error.message);
+}
+
+});
+
+
+
+
+
+
+
+
+
+
 }
