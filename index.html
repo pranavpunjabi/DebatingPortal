@@ -170,22 +170,42 @@
 </div>
 
 <div id="page_debate" class="row">
+    <div class="row" style="padding-left:6%; padding-right:6%; text-align:justify">
+        <h3 id="debate_title" class="center-align">
+            This house is for the advantages of unhealthy food for a healthy living
+        </h3>
+        <p id="debate_description">
+            ipsum ipsum ipsum
+        </p>
+    </div>
+    <div class="row center-align">
+        <a class="btn-floating btn-large waves-effect waves-light red" style="position:fixed; top:90%; right:2%">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
     <div class="row">
-        <div class="col s6 center-align">
-            <h1>For</h1>
-            <br>
-            <ol data-role="list-view" data-inset="true" id="post_forConstructive" title="nodes list">
-            </ol>
-            <ol data-role="list-view" data-inset="true" id="post_forRebuttal" title="nodes list">
-            </ol>
+        <div class="col s12 m6">
+            <h3 class="center-align">For</h3>
+            <ul data-role="list-view" data-inset="true" id="post_forConstructive" title="nodes list" style="list-style-type:none">
+            </ul>
         </div>
-        <div class="col s6 center-align">
-            <h1>Against</h1>
-            <br>
-            <ol data-role="list-view" data-inset="true" id="post_againstConstructive" title="nodes list">
-            </ol>
-            <ol data-role="list-view" data-inset="true" id="post_againstRebuttal" title="nodes list">
-            </ol>
+        <div class="col s12 m6">
+            <h3 class="center-align">Against</h3>
+            <ul data-role="list-view" data-inset="true" id="post_againstConstructive" title="nodes list" style="list-style-type:none">
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col s12 m6">
+            <h3 class="center-align hide-on-med-and-up">For (Rebuttal)</h3>
+            <ul data-role="list-view" data-inset="true" id="post_forRebuttal" title="nodes list" style="list-style-type:none">
+            </ul>
+        </div>
+        <div class="col s12 m6">
+            <h3 class="center-align hide-on-med-and-up">Against (Rebuttal)</h3>
+            <ul data-role="list-view" data-inset="true" id="post_againstRebuttal" title="nodes list" style="list-style-type:none">
+            </ul>
         </div>
     </div>
 </div>
@@ -226,12 +246,6 @@ $( document ).ready(function()
   $("<li><a href='#'>This House believes reality television does more harm than good </a></li>").appendTo("#debateList_completed");
   $("<li><a href='#'>This House would ban animal testing </a></li>").appendTo("#debateList_completed");
 
-
-  $("<li><a href='#'>This House supports the death penalty </a></li>").appendTo("#post_forConstructive");
-  $("<li><a href='#'>This House believes the internet brings more harm than good </a></li>").appendTo("#post_againstConstructive");
-  $("<li><a href='#'>This House believes Tennessee is correct to protect teachers who wish to explore the merits of creationism </a></li>").appendTo("#post_forRebuttal");
-  $("<li><a href='#'>This House believes reality television does more harm than good </a></li>").appendTo("#post_againstRebuttal");
-  $("<li><a href='#'>This House would ban animal testing </a></li>").appendTo("#post_forConstructor");
 
 })
 </script>

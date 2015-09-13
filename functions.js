@@ -17,13 +17,174 @@ $(function()
 	{
 		document.getElementById("page_login").style.display="initial";
 	}
-
+	debate = {
+		"active": true,
+		"createdAt": "2015-09-13T03:47:54.768Z",
+		"description": "\
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, soluta culpa aliquam ut excepturi rem!\
+		Sapiente magni vero, ad saepe? Sequi porro reprehenderit culpa rerum adipisci nihil saepe, corporis vitae?\
+		 Vel sequi impedit sunt ducimus blanditiis possimus aperiam exercitationem similique totam a eligendi,\
+		 incidunt quam necessitatibus reiciendis dolorem, illum, cupiditate doloremque eaque recusandae quia praesentium,\
+		 at. Id reprehenderit neque eveniet! Quaerat nam omnis aspernatur sapiente debitis quas harum unde accusamus\
+		 enim dicta blanditiis accusantium neque atque eius ab, quae, esse possimus officiis nesciunt, dolores\
+		asperiores! Eum voluptatem voluptas explicabo. Minima. Fugit, consequatur, corporis. Officia at cum, eius!\
+		 Doloremque molestias quas excepturi alias voluptas quidem soluta fuga, accusamus nihil eius sint,\
+		 harum neque obcaecati ex deserunt odit ab optio itaque, libero! Sunt quisquam accusamus labore eum optio\
+		 dolorum laborum, earum neque consectetur eaque tenetur autem error iusto ipsum aliquid accusantium odit,\
+		 obcaecati ratione culpa architecto iure maiores reprehenderit, quas voluptate et. Dolor, enim facilis,\
+		totam possimus est ratione. Vel consequuntur dolorem consequatur repudiandae veritatis. Pariatur repudiandae\
+		 ipsa quam asperiores quasi neque fugiat ratione quibusdam distinctio fuga quos quisquam nobis, illum, illo!\
+		 Neque, nam quos. Quaerat fuga excepturi temporibus placeat provident mollitia et nam, sequi voluptate tempore\
+		quod voluptatem ea beatae! Perferendis quos doloribus, nemo nobis consequatur maiores laborum voluptatem\
+		repellendus quae!",
+		"memberIdList": [
+		"4wPW3z3GOy",
+		"oB3uA21XhK"
+		],
+		"objectId": "zYJg0BdQkX",
+		"postIdList": [
+		"h7XmASJjSI","bN7fQkdGW6","tAMzBT548e","F0pFJqk40S"
+		],
+		"tagList": [],
+		"title": "This house is for the advantages of unhealthy food for a healthy living",
+		"updatedAt": "2015-09-13T03:56:05.169Z"
+	}
+	showDebate(debate);
 });
 
 
+function showDebate(debate)
+{
+	// debateId must be a string
 
+	// 1. hideAll() and then display post page
+	hideAll();
+	document.getElementById("page_debate").style.display="initial";
 
+	// 2. get list of post IDs
+	var postList = debate.postIdList;
+	// 3. Set elements such as title and description
+	document.getElementById("debate_title").innerHTML=debate.title;
+	document.getElementById("debate_description").innerHTML=debate.description;
 
+	for(i=0; i < postList.length; i++)
+	{
+		console.log(postList[i]);
+
+		var query = new Parse.Query("Post");
+		query.equalTo("objectId", postList[i]);
+		query.find().then
+		(
+			function(results)
+			{
+				// console.log("successful read");
+				// console.log(results[0]);
+				if(results[0] == undefined)
+					postInfo = (-1);
+				else
+				{
+					postInfo = (results[0].toJSON());
+					console.log(postInfo); // JSON object
+					var cardString = cardGenerate(postInfo);
+
+					// following decides where to add the post to
+					console.log(postInfo.type + "," + postInfo.motion);
+					if(postInfo.type == 'C')
+					{
+						if(postInfo.motion == 'F')
+						{
+							$(cardString).appendTo("#post_forConstructive");
+						}
+						else if(postInfo.motion == 'A')
+						{
+							$(cardString).appendTo("#post_againstConstructive");
+						}
+					}
+					if(postInfo.type == 'R')
+					{
+						if(postInfo.motion == 'F')
+						{
+							$(cardString).appendTo("#post_forRebuttal");
+						}
+						else if(postInfo.motion == 'A')
+						{
+							$(cardString).appendTo("#post_againstRebuttal");
+						}
+					}
+				}
+			},
+			function(error)
+			{
+				window.alert(error.message);
+			}
+		);
+
+	} // end of loop
+}
+
+// generates card for debate based on posts in debate
+function cardGenerate(postInfo)
+{
+	var cardString = "";
+	cardString += "<li>";
+	cardString += "<div class=\"row\">";
+	cardString += "<div class=\"col s12\">";
+
+	if(postInfo.type == 'C')
+	{
+		if(postInfo.motion == 'F')
+		{
+			cardString += "<div class=\"card cyan darken-3\">";
+		}
+		else if(postInfo.motion == 'A')
+		{
+			cardString += "<div class=\"card blue darken-3\">";
+		}
+	}
+	if(postInfo.type == 'R')
+	{
+		if(postInfo.motion == 'F')
+		{
+			cardString += "<div class=\"card cyan darken-1\">";
+		}
+		else if(postInfo.motion == 'A')
+		{
+			cardString += "<div class=\"card blue darken-1\">";
+		}
+	}
+
+	cardString += "<div class=\"card-content white-text\">";
+	cardString += "<span class=\"card-title\">";
+	cardString += postInfo.title;
+	cardString += "</span>";
+	cardString += "<p>";
+	cardString += postInfo.description;
+	cardString += "</p>";
+	cardString += "</div>";
+	cardString += "<div class=\"card-action\">";
+	cardString += "<p>"; // open cross reference
+	for(i = 0; i < postInfo.crossQuestionList.length; i++)
+	{
+		var QAList = postInfo.crossQuestionList[i];
+		// let question = postInfo.crossQuestionList[i][0];
+		// let answer   = postInfo.crossQuestionList[i][1];
+		cardString += "Q) " + QAList[0] + "<br>";
+		cardString += "A) " + QAList[1] + "<br>";
+	}
+	cardString += "</p>";
+	cardString += "</div></div></div></div>"
+	cardString += "</li>";
+	console.log(cardString);
+	return cardString;
+}
+
+function getPostInfo(postId, t)
+{
+	var postInfo = {};
+	console.log("returning: " + postInfo);
+	t = postInfo;
+	return postInfo;
+}
 
 
 
@@ -50,8 +211,12 @@ function pageChanged(elem)
 	else if(elem.id == "link_contactUs") {
 		document.getElementById("page_contactUs").style.display="initial";
 	}
-	else if(elem.id == "link_login") {
-		document.getElementById("page_login").style.display="initial";
+	else if(elem.id == "link_login")
+	{
+		if(Parse.User.current())
+			document.getElementById("page_home").style.display="initial";
+		else
+			document.getElementById("page_login").style.display="initial";
 	}
 	else if(elem.id == "link_policy") {
     	document.getElementById("page_policy").style.display="initial";
@@ -149,6 +314,3 @@ function signIn()
 
 	);
 }
-
-
-
