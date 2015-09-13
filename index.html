@@ -13,10 +13,10 @@
 <body>
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="materializecss/js/materialize.min.js"></script>
 <script type="text/javascript" src="https://www.parsecdn.com/js/parse-1.2.7.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="materializecss/js/materialize.min.js"></script>
 <script type="text/javascript" src="functions.js"></script>
+
 
 <!-- Dropdown Structure -->
 <ul id="Account" class="dropdown-content">
@@ -50,9 +50,10 @@
 <div class="row" id="page_login">
     <div class="col s12 l7">
         <div class="row">
-            <h3>"We promote civic engagement and critical thinking among the
+            <h5><blockquote class="flow-text">"We promote civic engagement and critical thinking among the
                 youth focussed on analyzing important social, economic,
-                environmental and political issues."</h3>
+                environmental and political issues."</blockquote></h5>
+
         </div>
     </div>
 
@@ -178,12 +179,61 @@
             ipsum ipsum ipsum
         </p>
     </div>
+
     <div class="row center-align">
         <a class="btn-floating btn-large waves-effect waves-light red"
             style="position:fixed; top:90%; right:2%" onclick = "addPost()">
             <i class="material-icons">add</i>
         </a>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="inputModal" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4>Your Voice!</h4>
+            <form>
+                <div class="row">
+                    <div class="switch col s12 m4 l2 center-align">
+                        <label>
+                            For
+                            <input type="checkbox" id="submitPost_motion">
+                            <span class="lever"></span>
+                            Against
+                        </label>
+                    </div>
+                    <div class="switch col s12 m4 l2 center-align">
+                        <label>
+                            Constructive
+                            <input type="checkbox" id="submitPost_type">
+                            <span class="lever"></span>
+                            Rebuttal
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="submitPost_title" type="text" class="validate">
+                            <label for="submitPost_title">Title</label>
+                        </div>
+                        <div class="input-field col s10">
+                            <textarea id="submitPost_description" class="materialize-textarea"></textarea>
+                            <label for="submitPost_description">Description</label>
+                        </div>
+                    </div>
+                </form>
+                <div class="col s12 right-align">
+                    <button class="btn waves-effect waves-light light-blue" type="submit" name="action" onclick = "submitPost()">
+                        Submit <i class="material-icons">send</i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col s12 m6">
             <h3 class="center-align">For</h3>

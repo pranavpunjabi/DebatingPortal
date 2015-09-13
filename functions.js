@@ -12,8 +12,8 @@ $(function()
 		document.getElementById("page_login").style.display="initial";
 	}
 
-	// hideAll();document.getElementById("page_debate").style.display="initial";
-	
+	hideAll();document.getElementById("page_debate").style.display="initial";
+
 });
 
 function showDebateParent(elem)
@@ -424,4 +424,19 @@ error: function(error)
 });
 
 
+}
+
+function addPost()
+{
+	$('#inputModal').openModal();
+}
+
+function submitPost()
+{
+	$('#inputModal').closeModal();
+	var motion = document.getElementById("submitPost_motion").value ;
+	var type = document.getElementById("submitPost_type").value ;
+	var title = document.getElementById("submitPost_title").value ;
+	var description = document.getElementById("submitPost_description").value ;
+	console.log(motion + "," + type + "," + title + "," + description);
 }
