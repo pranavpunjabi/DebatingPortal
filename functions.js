@@ -32,6 +32,15 @@ function showDebate(debate)
 {
 	console.log(debate);
 
+	// var elem = document.getElementById('post_forConstructive');
+	// elem.parentNode.removeChild(elem);
+	// var elem = document.getElementById('post_againstConstructive');
+	// elem.parentNode.removeChild(elem);
+	$(post_forConstructive).empty();
+	$(post_againstConstructive).empty();
+	$(post_forRebuttal).empty();
+	$(post_againstRebuttal).empty();
+
 	// 1. hideAll() and then display post page
 	hideAll();
 	document.getElementById("page_debate").style.display="initial";
@@ -153,13 +162,6 @@ function cardGenerate(postInfo)
 	return cardString;
 }
 
-function getPostInfo(postId, t)
-{
-	var postInfo = {};
-	console.log("returning: " + postInfo);
-	t = postInfo;
-	return postInfo;
-}
 
 
 
