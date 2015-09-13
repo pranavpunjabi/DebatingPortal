@@ -1,6 +1,6 @@
 
-//var User = Parse.Object.extend("User");
-//var Debate = Parse.Object.extend("Debate");
+
+
 //var Post = Parse.Object.extend("Post")
 
 
@@ -17,7 +17,30 @@ $(function()
 	{
 		document.getElementById("page_login").style.display="initial";
 	}
+
+	var Post = Parse.Object.extend("Post");
+	var post = new Post();
+	post.set("title", "trial");
+	post.set("description", "description");
+	post.set("motion", "F");
+	post.set("type", "C");
+	post.set("userId", "4wPW3z3GOy");
+	var crossQuestionList = [["Q1", "A1"],["Q2", "A2"],["Q3", ""]];
+	post.set("crossQuestionList", crossQuestionList);
+	post.save();
+	
+
+
+
+
+
+
+
 });
+
+
+
+
 
 
 
@@ -144,3 +167,6 @@ function signIn()
 
 	);
 }
+
+
+
