@@ -11,45 +11,26 @@ $(function()
 	{
 		document.getElementById("page_login").style.display="initial";
 	}
-	debate = {
-		"active": true,
-		"createdAt": "2015-09-13T03:47:54.768Z",
-		"description": "\
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, soluta culpa aliquam ut excepturi rem!\
-		Sapiente magni vero, ad saepe? Sequi porro reprehenderit culpa rerum adipisci nihil saepe, corporis vitae?\
-		 Vel sequi impedit sunt ducimus blanditiis possimus aperiam exercitationem similique totam a eligendi,\
-		 incidunt quam necessitatibus reiciendis dolorem, illum, cupiditate doloremque eaque recusandae quia praesentium,\
-		 at. Id reprehenderit neque eveniet! Quaerat nam omnis aspernatur sapiente debitis quas harum unde accusamus\
-		 enim dicta blanditiis accusantium neque atque eius ab, quae, esse possimus officiis nesciunt, dolores\
-		asperiores! Eum voluptatem voluptas explicabo. Minima. Fugit, consequatur, corporis. Officia at cum, eius!\
-		 Doloremque molestias quas excepturi alias voluptas quidem soluta fuga, accusamus nihil eius sint,\
-		 harum neque obcaecati ex deserunt odit ab optio itaque, libero! Sunt quisquam accusamus labore eum optio\
-		 dolorum laborum, earum neque consectetur eaque tenetur autem error iusto ipsum aliquid accusantium odit,\
-		 obcaecati ratione culpa architecto iure maiores reprehenderit, quas voluptate et. Dolor, enim facilis,\
-		totam possimus est ratione. Vel consequuntur dolorem consequatur repudiandae veritatis. Pariatur repudiandae\
-		 ipsa quam asperiores quasi neque fugiat ratione quibusdam distinctio fuga quos quisquam nobis, illum, illo!\
-		 Neque, nam quos. Quaerat fuga excepturi temporibus placeat provident mollitia et nam, sequi voluptate tempore\
-		quod voluptatem ea beatae! Perferendis quos doloribus, nemo nobis consequatur maiores laborum voluptatem\
-		repellendus quae!",
-		"memberIdList": [
-		"4wPW3z3GOy",
-		"oB3uA21XhK"
-		],
-		"objectId": "zYJg0BdQkX",
-		"postIdList": [
-		"h7XmASJjSI","bN7fQkdGW6","tAMzBT548e","F0pFJqk40S"
-		],
-		"tagList": [],
-		"title": "This house is for the advantages of unhealthy food for a healthy living",
-		"updatedAt": "2015-09-13T03:56:05.169Z"
-	}
+
 	//showDebate(debate);
 });
 
+function showDebateParent(elem)
+{
+	var debateId = elem.id;
+	console.log(debateId);
+	var debateQuery = new Parse.Query("Debate");
+	debateQuery.equalTo("objectId", debateId);
+	debateQuery.find().then(function(results)
+		{
+			var debate = results[0].toJSON();
+			showDebate(debate);
+		}, function(error){window.alert(error.message);});
+}
 
 function showDebate(debate)
 {
-	// debateId must be a string
+	console.log(debate);
 
 	// 1. hideAll() and then display post page
 	hideAll();
@@ -322,8 +303,28 @@ query.find({
 
 
     // Successfully retrieved the object.
-    for(var i = 0; i < list.length; i++) {
-    	$("<li><a style=\"cursor:pointer;\" onClick =\"showDebate("+list[i].toJSON()[0]+")\" >" + list[i].get("title") + "</a></li>").appendTo("#debateList_current");
+    for(var i = 0; i < list.length; i++)
+	{
+		var myObj = list[i].toJSON().objectId;
+		console.log(myObj);
+
+		var stringBuilder = "";
+		stringBuilder += "<li>";
+		stringBuilder += "<a id = ";
+		stringBuilder += "\"";
+		stringBuilder += myObj;
+		stringBuilder += "\" ";
+		stringBuilder += "style = \"";
+		stringBuilder += "cursor:pointer;";
+		stringBuilder += "\" ";
+		stringBuilder += "onclick = \"";
+		stringBuilder += "showDebateParent(this)";
+		stringBuilder += "\"> ";
+		stringBuilder += list[i].get("title");
+		stringBuilder += "</a>";
+		stringBuilder += "</li>";
+		console.log(stringBuilder);
+		$(stringBuilder).appendTo("#debateList_current");
     }
 
 },
@@ -342,8 +343,28 @@ query.equalTo("active", false);
 query.find({
 	success: function(list) {
     // Successfully retrieved the object.
-    for(var i = 0; i < list.length; i++) {
-    	$("<li><a style=\"cursor:pointer;\" onClick =\"showDebate("+list[i].toJSON()[0]+")\">" + list[i].get("title") + "</a></li>").appendTo("#debateList_completed");
+    for(var i = 0; i < list.length; i++)
+	{
+		var myObj = list[i].toJSON().objectId;
+		console.log(myObj);
+
+		var stringBuilder = "";
+		stringBuilder += "<li>";
+		stringBuilder += "<a id = ";
+		stringBuilder += "\"";
+		stringBuilder += myObj;
+		stringBuilder += "\" ";
+		stringBuilder += "style = \"";
+		stringBuilder += "cursor:pointer;";
+		stringBuilder += "\" ";
+		stringBuilder += "onclick = \"";
+		stringBuilder += "showDebateParent(this)";
+		stringBuilder += "\"> ";
+		stringBuilder += list[i].get("title");
+		stringBuilder += "</a>";
+		stringBuilder += "</li>";
+		console.log(stringBuilder);
+		$(stringBuilder).appendTo("#debateList_completed");
     }
 
 },
@@ -367,8 +388,28 @@ query.find(
 
 
     // Successfully retrieved the object.
-    for(var i = 0; i < array.length; i++) {
-    	$("<li><a style=\"cursor:pointer;\" onClick =\"showDebate("+array[i].toJSON()[0]+")\">" + array[i].get("title") + "</a></li>").appendTo("#debateList_mine");
+    for(var i = 0; i < array.length; i++)
+	{
+		var myObj = array[i].toJSON().objectId;
+		console.log(myObj);
+
+		var stringBuilder = "";
+		stringBuilder += "<li>";
+		stringBuilder += "<a id = ";
+		stringBuilder += "\"";
+		stringBuilder += myObj;
+		stringBuilder += "\" ";
+		stringBuilder += "style = \"";
+		stringBuilder += "cursor:pointer;";
+		stringBuilder += "\" ";
+		stringBuilder += "onclick = \"";
+		stringBuilder += "showDebateParent(this)";
+		stringBuilder += "\"> ";
+		stringBuilder += array[i].get("title");
+		stringBuilder += "</a>";
+		stringBuilder += "</li>";
+		console.log(stringBuilder);
+		$(stringBuilder).appendTo("#debateList_mine");
     }
 
 },
