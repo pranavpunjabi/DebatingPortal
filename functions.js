@@ -13,7 +13,7 @@ $(function()
 	}
 
 	// hideAll();document.getElementById("page_debate").style.display="initial";
-	Materialize.toast("yo", 4000);
+	
 });
 
 function showDebateParent(elem)
