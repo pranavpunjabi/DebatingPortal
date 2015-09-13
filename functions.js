@@ -448,4 +448,17 @@ function submitPost()
 	var title = document.getElementById("submitPost_title").value ;
 	var description = document.getElementById("submitPost_description").value ;
 	console.log(motion + "," + type + "," + title + "," + description);
+
+	var post = new Parse.Object("Post");
+	post.set("motion",motion);
+	post.set("type",type);
+	post.set("title",title);
+	post.set("description",description);
+	post.set("crossQuestionList", []);
+	post.save.then(function(post){
+		//successfully posted
+	},function(error) {
+		//unsuccessful
+		Materialize.toast(error.message, 4000);
+	});
 }
